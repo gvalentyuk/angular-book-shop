@@ -38,8 +38,17 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.signup(this.formGroup.getRawValue()).subscribe(() => {
-      this.router.navigateByUrl('/');
+    this.authService.signup(this.formGroup.getRawValue()).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/')
+      },
+      error: (err) => {
+        if (!err.status) {
+          this.formGroup.setErrors({ noConnection: true });
+        } else {
+          this.formGroup.setErrors({ anotherError: true });
+        }
+      }
     });
   }
 }
