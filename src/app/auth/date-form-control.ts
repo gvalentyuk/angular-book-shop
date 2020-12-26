@@ -12,12 +12,12 @@ export class DateFormControl extends FormControl {
           return;
         }
     
-        if(value.length === 2 && this.value.length === 3 || value.length === 5 && this.value.length===6){
+        if(value.length === 4 && this.value.length === 5 || value.length === 7 && this.value.length===8){
           super.setValue(value, {...options, emitModelToViewChange: true});
           return;
         }
     
-        if (value.length === 2 || value.length===5) {
+        if (value.length === 4 || value.length===7) {
           super.setValue(value + '-', {...options, emitModelToViewChange: true});
           return;
         }
