@@ -1,20 +1,60 @@
 <div class="page">
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
-    <!-- <app-input controlType="input" label="qweqwe" [control]="formGroup.get('name')"></app-input> -->
     <h2>Registration</h2>
     <h3>Already have an account? <a href="/">Sign In</a></h3>
     <div class="name">
-      <input type="text" placeholder="First Name" formControlName="name" />
-      <input type="text" placeholder="Last Name" formControlName="surname" />
+      <div class="first-name">
+        <app-input
+          placeholder="Name"
+          controlType="input"
+          [control]="formGroup.get('name')"
+        ></app-input>
+      </div>
+      <div class="last-name">
+        <app-input
+          placeholder="Last Name"
+          controlType="input"
+          [control]="formGroup.get('surname')"
+        ></app-input>
+      </div>
     </div>
-    <input
-      type="text"
-      placeholder="Date Of Birthday (MM/DD/YYYY)"
-      formControlName="dateOfBirthday"
-    />
-    <input type="text" placeholder="Email" formControlName="email" />
-    <input type="password" placeholder="Password" formControlName="password" />
-    <input type="password" placeholder="Confirm Password" />
+    <app-input
+      placeholder="Date Of Birthday (MM-DD-YYYY)"
+      controlType="input"
+      [control]="formGroup.get('dateOfBirthday')"
+    ></app-input>
+    <app-input
+      placeholder="Email"
+      controlType="input"
+      [control]="formGroup.get('email')"
+    ></app-input>
+    <app-input
+      placeholder="Password"
+      controlType="input"
+      inputType="password"
+      [control]="formGroup.get('password')"
+    ></app-input>
+    <app-input
+      placeholder="Confirm Password"
+      controlType="input"
+      inputType="password"
+      [control]="formGroup.get('confirmPassword')"
+    ></app-input>
+
+    <div
+      *ngIf="
+        formGroup.get('password').touched &&
+        formGroup.get('confirmPassword').touched &&
+        formGroup.errors
+      "
+      class="errors"
+    >
+      <p class="error" *ngIf="formGroup.errors.passwordsDontMatch">
+        Password's dont match.
+      </p>
+      <p *ngIf="formGroup.errors.noConnection">No Internet connection.</p>
+      <p *ngIf="formGroup.errors.anotherError">Failure sign up.</p>
+    </div>
     <button type="submit">Registration</button>
   </form>
 </div>

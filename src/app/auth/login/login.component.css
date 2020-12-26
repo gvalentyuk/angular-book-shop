@@ -34,39 +34,13 @@
     justify-content: space-between;
 }
 
-.page form .name input {
-    width: 42%;
+.page form .name .first-name {
+    width: 44%;
 }
 
-.page form input {
-    background: none;
-    outline: none;
-
-    border: 1px solid white;
-    margin-bottom: 15px;
-    min-height: 45px;
-    font-family: 'Nunito';
-    padding: 0 10px;
-    color: white;
-    font-size: 1em;
-    letter-spacing: 2px;
+.page form .name .last-name {
+    width: 44%;
 }
-
-.page form input[type="password"]{
-    letter-spacing: 3px;
-}
-
-
- /* Placeholder styles*/
-.page form input::placeholder {
-    color: rgb(236, 236, 236);
-    letter-spacing: normal;
-}
-
-.page form input[type="password"]::placeholder {
-    letter-spacing: normal;
-}
-
 
 /* Button */
 .page form button {
@@ -89,6 +63,11 @@
     transform: translateY(0.3rem);
 }
 
+.page .error {
+    color: white;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
 
 
 /* Media queries*/
