@@ -1,21 +1,22 @@
 .field {
     width: 100%;
-    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .field input {
     box-sizing: border-box;
     background: none;
     outline: none;
-    margin: 0;
+    margin-bottom: 0;
     border: 1px solid white;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     min-height: 45px;
     font-family: 'Nunito';
     padding: 0 10px;
     color: white;
     font-size: 1em;
     width: 100%;
+
     letter-spacing: 2px;
 }
 
