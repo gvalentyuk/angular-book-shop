@@ -1,0 +1,20 @@
+<div class="page">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <!-- <app-input controlType="input" label="qweqwe" [control]="formGroup.get('name')"></app-input> -->
+    <h2>Registration</h2>
+    <h3>Already have an account? <a href="/">Sign In</a></h3>
+    <div class="name">
+      <input type="text" placeholder="First Name" formControlName="name" />
+      <input type="text" placeholder="Last Name" formControlName="surname" />
+    </div>
+    <input
+      type="text"
+      placeholder="Date Of Birthday (MM/DD/YYYY)"
+      formControlName="dateOfBirthday"
+    />
+    <input type="text" placeholder="Email" formControlName="email" />
+    <input type="password" placeholder="Password" formControlName="password" />
+    <input type="password" placeholder="Confirm Password" />
+    <button type="submit">Registration</button>
+  </form>
+</div>
