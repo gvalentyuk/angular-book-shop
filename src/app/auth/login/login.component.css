@@ -17,7 +17,8 @@
     color:  #21292c;
 }
 
-.page h3 a{
+.page h3 span{
+    cursor: pointer;
     color: white;
 }
 
@@ -68,6 +69,30 @@
     font-size: 14px;
     margin: 0 0 10px 0;
 }
+
+
+/* Button */
+.submit {
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #21292c;
+    line-height: 45px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.1em;
+    font-family: "Nunito";
+  }
+
+  .submit:hover {
+    filter: brightness(110%);
+  }
+  .submit:active {
+    transform: translateY(0.3rem);
+  }
+  
 
 
 /* Media queries*/

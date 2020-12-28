@@ -13,14 +13,30 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  showModal = false;
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+  });
+
   formGroup = new FormGroup(
     {
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
       dateOfBirthday: new DateFormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(5)])
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
     },
     { validators: [this.matchPassword.validate] }
   );
@@ -33,14 +49,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submit() {
+  register() {
     if (this.formGroup.invalid) {
       return;
     }
 
     this.authService.signup(this.formGroup.getRawValue()).subscribe({
       next: () => {
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/');
       },
       error: (err) => {
         if (!err.status) {
@@ -48,7 +64,27 @@ export class LoginComponent implements OnInit {
         } else {
           this.formGroup.setErrors({ anotherError: true });
         }
-      }
+      },
+    });
+  }
+
+  login() {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    
+    this.authService.login(this.loginForm.getRawValue()).subscribe({
+      next: () => {
+        this.showModal = false;
+        this.router.navigateByUrl('/');
+      },
+      error: (err) => {
+        if (!err.status) {
+          this.loginForm.setErrors({ noConnection: true });
+        } else {
+          this.loginForm.setErrors({ anotherError: true });
+        }
+      },
     });
   }
 }

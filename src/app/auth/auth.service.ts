@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+interface SignInCredentials {
+  email: string,
+  password: string
+}
+
 interface SignUpCredentials {
   name: string;
   surname: string;
@@ -24,6 +29,8 @@ interface User {
   providedIn: 'root',
 })
 export class AuthService {
+
+  rootUrl = 'http://localhost:8080/api'
   public currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -37,7 +44,7 @@ export class AuthService {
   signup(credentials: SignUpCredentials) {
     return this.http
       .post<any>(
-        'http://localhost:8080/api/auth/signup',
+        `${this.rootUrl}/auth/signup`,
         credentials
       )
       .pipe(
@@ -47,5 +54,17 @@ export class AuthService {
           return user;
         })
       );
+  }
+
+  login(credentials: SignInCredentials){
+    return this.http
+      .post<any>(`${this.rootUrl}/auth/signin`, credentials)
+      .pipe(
+        map((user) => {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        })
+      )
   }
 }

@@ -1,0 +1,20 @@
+<div (click)="onDismissClick()" class="modal">
+  <div (click)="$event.stopPropagation()" class="modal-form">
+    <div class="header">
+      <ng-content select="[modalTitle]"></ng-content>
+      <div class="menu-bars" (click)="onDismissClick()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+    <div class="modal-content">
+      <ng-content></ng-content>
+    </div>
+    <div class="options">
+    </div>
+    <div>
+      <ng-content select="[modalFooter]"></ng-content>
+    </div>
+  </div>
+</div>

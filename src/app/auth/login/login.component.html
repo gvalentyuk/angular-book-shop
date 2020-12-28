@@ -1,7 +1,9 @@
 <div class="page">
-  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <form [formGroup]="formGroup" (ngSubmit)="register()">
     <h2>Registration</h2>
-    <h3>Already have an account? <a href="/">Sign In</a></h3>
+    <h3>
+      Already have an account? <span (click)="showModal = true">Sign In</span>
+    </h3>
     <div class="name">
       <div class="first-name">
         <app-input
@@ -58,3 +60,22 @@
     <button type="submit">Registration</button>
   </form>
 </div>
+
+
+<app-modal (dismiss)="showModal=false" *ngIf="showModal">
+  <div modalTitle><h3>Sign In</h3></div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <app-input
+      placeholder="Email"
+      controlType="input"
+      [control]="loginForm.get('email')"
+    ></app-input>
+    <app-input
+      placeholder="Password"
+      controlType="input"
+      inputType="password"
+      [control]="loginForm.get('password')"
+    ></app-input>
+    <button class="submit" (click)="login()">Submit</button>
+  </form>
+</app-modal>
